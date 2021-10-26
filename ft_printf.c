@@ -6,7 +6,7 @@
 /*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:11:50 by lshonta           #+#    #+#             */
-/*   Updated: 2021/10/26 19:28:11 by lshonta          ###   ########.fr       */
+/*   Updated: 2021/10/26 21:15:48 by lshonta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,58 @@ void	ft_putstr(char *s)
 		ft_putchar(*s++);
 }
 
+void	ft_putnbr(int	nb)
+{
+	if (nb < 0)
+	{
+		ft_putchar('-');
+		nb = -nb;
+	}
+	if (nb == -2147483648)
+	{
+		ft_putchar('2');
+		nb = 147483648;
+	}
+	if (nb >= 10)
+	{
+		ft_putnbr(nb / 10);
+	}
+	ft_putchar((nb % 10) + 48);
+}
+
 void	ft_print_arg(char c, va_list ap)
 {
 	if (c == 'c')
 		ft_putchar(va_arg(ap, int));
 	else if (c == 's')
 		ft_putstr(va_arg(ap, char *));
+	else if (c == 'd' || c == 'i')
+		ft_putnbr(va_arg(ap, int));
+	// else if (c == 'u')
+	// 	ft_uint(va_arg(ap, long long int));
+	// else if (c == 'p')
+	// else if (c == 'x')
+	// 	ft_hex_low(va_arg(ap, char), "0123456789")
+	// else if (c == 'X')
+	// else if (c == '%')
+	// 	ft_putchar('%');
+}
+
+int	ft_strlen(char *str)
+{
+	int	i;
+
+	while (str[i])
+		i++;
+	return (i);
 }
 
 int	ft_printf(const char *format, ...)
 {
+	int		i;
 	va_list	ap;
 
+	i = 0;
 	va_start(ap, format);
 	while (*format)
 	{
@@ -47,14 +87,15 @@ int	ft_printf(const char *format, ...)
 			ft_putchar(*format);
 		format++;
 	}
+	i = ft_strlen(va_arg(ap, char *));
 	va_end(ap);
-	return (0);
+	return (i);
 }
 
 #include <stdio.h>
 int main()
 {
-	ft_printf("%s\n", "hello");
-	printf("%s\n", "hello");
+	ft_printf("%d\n", 12345);
+	printf("%d\n", 12345);
 	return (0);
 }

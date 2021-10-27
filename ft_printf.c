@@ -6,43 +6,93 @@
 /*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:11:50 by lshonta           #+#    #+#             */
-/*   Updated: 2021/10/26 23:54:40 by lshonta          ###   ########.fr       */
+/*   Updated: 2021/10/27 22:40:56 by lshonta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#include <stdio.h>
 
 int	ft_putchar(int c)
 {
 	write (1, &c, 1);
-	return (0);
+	return (1);
 }
 
-int	ft_strlen(char *str)
+int	ft_intlen(int num)
 {
 	int	i;
 
-	while (str[i])
+	i = 0;
+	if (num < 0)
+	{
 		i++;
+		num = -num;
+	}
+	if (num != 0)
+	{
+		while (num != 0)
+		{
+			num /= 10;
+			i++;
+		}
+	}
+	else
+		i++;
+	printf("\nlen->%d\n", i);
 	return (i);
 }
 
-void	ft_putstr(char *s)
+int	ft_hexlen(int num)
 {
-	if (!(*s))
-		return ;
-	while (*s)
-		ft_putchar(*s++);
+	int	i;
+
+	i = 0;
+	if (num < 0)
+	{
+		i++;
+		num = -num;
+	}
+	if (num != 0)
+	{
+		while (num)
+		{
+			num /= 16;
+			i++;
+		}
+	}
+	else
+		i++;
+	printf("\nlen->%d\n", i);
+	return (i);
 }
 
-void	ft_putnbr(int	nb)
+int	ft_putstr(char *s)
 {
+	int	i;
+
+	i = 0;
+	if (!(s[i]))
+		return (0);
+	while (s[i])
+	{
+		ft_putchar(s[i]);
+		i++;
+	}
+	return (i);
+}
+
+int	ft_putnbr(int	nb)
+{
+	int copy;
+
+	copy = nb;
 	if (nb < 0)
 	{
 		ft_putchar('-');
 		nb = -nb;
 	}
-	if (nb == -2147483648)
+	else if (nb == -2147483648)
 	{
 		ft_putchar('2');
 		nb = 147483648;
@@ -52,9 +102,10 @@ void	ft_putnbr(int	nb)
 		ft_putnbr(nb / 10);
 	}
 	ft_putchar((nb % 10) + 48);
+	return (copy);
 }
 
-void	ft_uint(int nb)
+int	ft_uint(int nb)
 {
 	unsigned int	nbr;
 
@@ -66,10 +117,14 @@ void	ft_uint(int nb)
 		ft_uint(nbr / 10);
 	}
 	ft_putchar((nbr % 10) + 48);
+	return (0);
 }
 
-void	ft_point(unsigned	long	long nbr)
+int	ft_point(unsigned	long	int nbr)
 {
+	int	len;
+
+	len = nbr;
 	if (nbr > 15)
 	{
 		ft_point(nbr / 16);
@@ -82,52 +137,109 @@ void	ft_point(unsigned	long	long nbr)
 		else
 			ft_putchar(nbr - 10 + 'a');
 	}
+	return (len);
 }
 
-void	ft_print_arg(char c, va_list ap)
+int	ft_hex_low(unsigned long int nbr)
 {
+	int	len;
+
+	len = nbr;
+	if (nbr > 15)
+	{
+		ft_hex_low(nbr / 16);
+		ft_hex_low(nbr % 16);
+	}
+	else
+	{
+		if (nbr <= 9)
+		{
+			ft_putchar(nbr + '0');
+		}
+		else
+		{
+			ft_putchar(nbr - 10 + 'a');
+		}
+	}
+	return (len);
+}
+
+int	ft_hex_up(unsigned long int nbr)
+{
+	int	len;
+
+	len = nbr;
+	if (nbr > 15)
+	{
+		ft_hex_up(nbr / 16);
+		ft_hex_up(nbr % 16);
+	}
+	else
+	{
+		if (nbr <= 9)
+		{
+			ft_putchar(nbr + '0');
+		}
+		else
+		{
+			ft_putchar(nbr - 10 + 'A');
+		}
+	}
+	return (len);
+}
+
+int	ft_print_arg(char c, va_list ap)
+{
+	int len = 0;
 	if (c == 'c')
-		ft_putchar(va_arg(ap, int));
+		return (ft_putchar(va_arg(ap, int)));
 	else if (c == 's')
-		ft_putstr(va_arg(ap, char *));
+		return (ft_putstr(va_arg(ap, char *)));
 	else if (c == 'd' || c == 'i')
-		ft_putnbr(va_arg(ap, int));
+		return (ft_intlen(ft_putnbr(va_arg(ap, int))));
 	else if (c == 'u')
-		ft_uint(va_arg(ap, long long int));
+		return (ft_uint(va_arg(ap, long long int)));
 	else if (c == 'p')
-		ft_point(va_arg(ap, unsigned long long));
-	// else if (c == 'x')
-	// 	ft_hex_low(va_arg(ap, unsigned int), "0123456789abcdef")
-	// else if (c == 'X')
-	// 	ft_hex_up(va_arg(ap, unsigned int), "0123456789ABCDEF")
-	// else if (c == '%')
-	// 	ft_putchar('%');
+	{
+		write(1, "0x", 2);
+		return (ft_hexlen(ft_point(va_arg(ap, unsigned long int)) + 2));
+	}
+	else if (c == 'x')
+		return (ft_hexlen(ft_hex_low(va_arg(ap, unsigned int))));
+	else if (c == 'X')
+		return (ft_hexlen(ft_hex_up(va_arg(ap, unsigned int))));
+	else if (c == '%')
+	{
+		ft_putchar('%');
+		return (1);
+	}
+	return (0);
 }
 
 int	ft_printf(const char *format, ...)
 {
-	int		i;
+	int		len;
 	va_list	ap;
 
-	i = 0;
+	len = 0;
 	va_start(ap, format);
 	while (*format)
 	{
 		if (*format == '%')
-			ft_print_arg(*(++format), ap);
+			len = ft_print_arg(*(++format), ap);
 		else
 			ft_putchar(*format);
 		format++;
+		len++;
 	}
-	i = ft_strlen(va_arg(ap, char *));
 	va_end(ap);
-	return (i);
+	return (len);
 }
 
-#include <stdio.h>
 int main()
 {
-	ft_printf("%p\n", (void *) -214);
-	printf("%p\n", (void *) -214);
+	int x = 7562;
+	ft_printf("%p\n", &x);
+	printf("%p\n", &x);
 	return (0);
 }

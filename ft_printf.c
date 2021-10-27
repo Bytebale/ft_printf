@@ -6,7 +6,7 @@
 /*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:11:50 by lshonta           #+#    #+#             */
-/*   Updated: 2021/10/27 22:40:56 by lshonta          ###   ########.fr       */
+/*   Updated: 2021/10/27 22:57:12 by lshonta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_intlen(int num)
 	return (i);
 }
 
-int	ft_hexlen(int num)
+int	ft_hexlen(unsigned long int num)
 {
 	int	i;
 
@@ -57,6 +57,7 @@ int	ft_hexlen(int num)
 	{
 		while (num)
 		{
+			printf("\nlen->%d, num ->%d\n", i, num);
 			num /= 16;
 			i++;
 		}
@@ -105,7 +106,7 @@ int	ft_putnbr(int	nb)
 	return (copy);
 }
 
-int	ft_uint(int nb)
+int	ft_uint(unsigned int nb)
 {
 	unsigned int	nbr;
 
@@ -198,7 +199,7 @@ int	ft_print_arg(char c, va_list ap)
 	else if (c == 'd' || c == 'i')
 		return (ft_intlen(ft_putnbr(va_arg(ap, int))));
 	else if (c == 'u')
-		return (ft_uint(va_arg(ap, long long int)));
+		return (ft_uint(va_arg(ap, unsigned int)));
 	else if (c == 'p')
 	{
 		write(1, "0x", 2);
@@ -238,7 +239,7 @@ int	ft_printf(const char *format, ...)
 
 int main()
 {
-	int x = 7562;
+	int x = 3648;
 	ft_printf("%p\n", &x);
 	printf("%p\n", &x);
 	return (0);

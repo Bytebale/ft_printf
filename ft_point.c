@@ -1,41 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_point.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gribovvladimir <gribovvladimir@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/25 11:11:50 by lshonta           #+#    #+#             */
-/*   Updated: 2021/10/29 22:08:57 by gribovvladi      ###   ########.fr       */
+/*   Created: 2021/10/29 20:39:26 by gribovvladi       #+#    #+#             */
+/*   Updated: 2021/10/29 22:06:46 by gribovvladi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_printf(const char *format, ...)
+int	ft_point(unsigned	long	int nbr)
 {
-	int		len;
-	va_list	ap;
+	int	len;
 
-	len = 0;
-	va_start(ap, format);
-	while (*format)
+	len = nbr;
+	if (nbr > 15)
 	{
-		if (*format == '%')
-			len = ft_print_arg(*(++format), ap);
-		else
-			ft_putchar(*format);
-		format++;
-		len++;
+		ft_point(nbr / 16);
+		ft_point(nbr % 16);
 	}
-	va_end(ap);
+	else
+	{
+		if (nbr <= 9)
+			ft_putchar(nbr + '0');
+		else
+			ft_putchar(nbr - 10 + 'a');
+	}
 	return (len);
 }
-
-// int main()
-// {
-// 	char x[] = "3648";
-// 	ft_printf("%s\n", x);
-// 	printf("%s\n", x);
-// 	return (0);
-// }

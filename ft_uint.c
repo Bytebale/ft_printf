@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_uint.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gribovvladimir <gribovvladimir@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/26 20:09:55 by lshonta           #+#    #+#             */
-/*   Updated: 2021/10/27 21:01:14 by lshonta          ###   ########.fr       */
+/*   Created: 2021/10/29 20:38:19 by gribovvladi       #+#    #+#             */
+/*   Updated: 2021/10/29 22:05:45 by gribovvladi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libftprintf.h"
+#include "libftprintf.h"
 
-void	ft_putstr(char *s)
+int	ft_uint(unsigned int nb)
 {
-	if (!(*s))
-		return ;
-	while (*s)
-		ft_putchar(*s++);
+	unsigned int	nbr;
+
+	if (nb < 0)
+		nb = -nb;
+	nbr = (unsigned int) nb;
+	if (nb >= 10)
+	{
+		ft_uint(nbr / 10);
+	}
+	ft_putchar((nbr % 10) + 48);
+	return (0);
 }

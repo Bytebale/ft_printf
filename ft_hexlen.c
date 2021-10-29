@@ -1,41 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_hexlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gribovvladimir <gribovvladimir@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/25 11:11:50 by lshonta           #+#    #+#             */
-/*   Updated: 2021/10/29 22:08:57 by gribovvladi      ###   ########.fr       */
+/*   Created: 2021/10/29 20:36:19 by gribovvladi       #+#    #+#             */
+/*   Updated: 2021/10/29 22:06:55 by gribovvladi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_printf(const char *format, ...)
+int	ft_hexlen(unsigned long int num)
 {
-	int		len;
-	va_list	ap;
+	int	i;
 
-	len = 0;
-	va_start(ap, format);
-	while (*format)
+	i = 0;
+	if (num < 0)
 	{
-		if (*format == '%')
-			len = ft_print_arg(*(++format), ap);
-		else
-			ft_putchar(*format);
-		format++;
-		len++;
+		i++;
+		num = -num;
 	}
-	va_end(ap);
-	return (len);
+	if (num != 0)
+	{
+		while (num)
+		{
+			num /= 16;
+			i++;
+		}
+	}
+	else
+		i++;
+	return (i);
 }
 
-// int main()
-// {
-// 	char x[] = "3648";
-// 	ft_printf("%s\n", x);
-// 	printf("%s\n", x);
-// 	return (0);
-// }
+			// printf("\nlen->%d, num ->%d\n", i, num);
+			// 	printf("\nlen->%d\n", i);

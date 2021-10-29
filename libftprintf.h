@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libftprintf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gribovvladimir <gribovvladimir@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:12:44 by lshonta           #+#    #+#             */
-/*   Updated: 2021/10/27 21:01:19 by lshonta          ###   ########.fr       */
+/*   Updated: 2021/10/29 22:08:54 by gribovvladi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,16 @@
 # include <stdarg.h>
 # include "limits.h"
 
-typedef struct s_print
-{
-	va_list	args;
-	int		wdt;
-	int		prc;
-	int		zero;
-	int		pnt;
-	int		dash;
-	int		tlen;
-	int		sign;
-	int		is_zero;
-	int		percent;
-	int		space;
-}	t_print;
-
-int		ft_printf(const char *format, ...);
+int	ft_printf(const char *format, ...);
+int	ft_print_arg(char c, va_list ap);
+int	ft_hex_up(unsigned long int nbr);
+int	ft_hex_low(unsigned long int nbr);
+int	ft_point(unsigned	long	int nbr);
+int	ft_uint(unsigned int nb);
+int	ft_putnbr(int nb);
+int	ft_putstr(char *s);
+int	ft_hexlen(unsigned long int num);
+int	ft_intlen(int num);
+int	ft_putchar(int c);
 
 #endif

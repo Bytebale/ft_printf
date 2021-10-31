@@ -6,11 +6,11 @@
 /*   By: gribovvladimir <gribovvladimir@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 20:38:19 by gribovvladi       #+#    #+#             */
-/*   Updated: 2021/10/29 22:05:45 by gribovvladi      ###   ########.fr       */
+/*   Updated: 2021/10/30 06:58:50 by gribovvladi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "./libftprintf.h"
 
 int	ft_uint(unsigned int nb)
 {

@@ -6,11 +6,11 @@
 /*   By: gribovvladimir <gribovvladimir@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 11:11:50 by lshonta           #+#    #+#             */
-/*   Updated: 2021/10/29 22:08:57 by gribovvladi      ###   ########.fr       */
+/*   Updated: 2021/10/30 07:14:08 by gribovvladi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "./libftprintf.h"
 
 int	ft_printf(const char *format, ...)
 {
@@ -24,18 +24,21 @@ int	ft_printf(const char *format, ...)
 		if (*format == '%')
 			len = ft_print_arg(*(++format), ap);
 		else
+		{
 			ft_putchar(*format);
-		format++;
-		len++;
+			format++;
+			len++;
+		}
 	}
 	va_end(ap);
 	return (len);
 }
 
-// int main()
-// {
-// 	char x[] = "3648";
-// 	ft_printf("%s\n", x);
-// 	printf("%s\n", x);
-// 	return (0);
-// }
+#include <stdio.h>
+int main()
+{
+	char x[] = "3648";
+	ft_printf("%s\n", x);
+	printf("%s\n", x);
+	return (0);
+}

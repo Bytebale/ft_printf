@@ -6,11 +6,11 @@
 /*   By: gribovvladimir <gribovvladimir@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:09:55 by lshonta           #+#    #+#             */
-/*   Updated: 2021/10/29 22:05:43 by gribovvladi      ###   ########.fr       */
+/*   Updated: 2021/10/30 06:59:31 by gribovvladi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "./libftprintf.h"
 
 int	ft_putstr(char *s)
 {

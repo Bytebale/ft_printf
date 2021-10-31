@@ -6,11 +6,11 @@
 /*   By: gribovvladimir <gribovvladimir@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 20:40:49 by gribovvladi       #+#    #+#             */
-/*   Updated: 2021/10/29 22:07:00 by gribovvladi      ###   ########.fr       */
+/*   Updated: 2021/10/30 07:00:31 by gribovvladi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "./libftprintf.h"
 
 int	ft_hex_up(unsigned long int nbr)
 {

@@ -6,35 +6,41 @@
 #    By: gribovvladimir <gribovvladimir@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/29 21:07:44 by gribovvladi       #+#    #+#              #
-#    Updated: 2021/10/29 22:05:26 by gribovvladi      ###   ########.fr        #
+#    Updated: 2021/10/30 06:56:42 by gribovvladi      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
-NAME = libftprintf.a
-CFLAGS = -Wall -Wextra -Werror -c
+NAME := libftprintf.a 
+HEADER := *.h
+FLAGS := -Wall -Werror -Wextra
+LIST := ft_hex_low.c\
+		ft_hex_up.c\
+		ft_hexlen.c\
+		ft_intlen.c\
+		ft_point.c\
+		ft_print_arg.c\
+		ft_printf.c\
+		ft_putchar.c\
+		ft_putnbr.c\
+		ft_putstr.c\
+		ft_uint.c\
 
-SRCS=./*.c
+OBJ = $(patsubst %.c,%.o, $(LIST))
 
-OBJECTS=*.o
-LIB_PATH = ./
-INCLUDES=./includes
+all: $(NAME)
 
-all:$(NAME)
+$(NAME) : $(HEADER) $(OBJ)
+	 ar -rc $(NAME)  $?
 
-$(NAME):
-	@$(CC) $(CFLAGS) $(SRCS)
-	@ar -rc $(NAME) $(OBJECTS)
-	@ranlib $(NAME)
-
-bonus: re
+%.o : %.c
+	gcc $(FLAGS) -c $<
 
 clean:
-	rm -f $(OBJECTS)
+	rm -rf $(OBJ)
 
 fclean: clean
-	rm -f $(NAME) $<
+	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY:	all clean fclean re
+.PHONY: all clean fclean re bonus

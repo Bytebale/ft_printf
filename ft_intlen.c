@@ -6,11 +6,11 @@
 /*   By: gribovvladimir <gribovvladimir@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 20:35:39 by gribovvladi       #+#    #+#             */
-/*   Updated: 2021/10/29 22:06:51 by gribovvladi      ###   ########.fr       */
+/*   Updated: 2021/10/30 07:00:20 by gribovvladi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "./libftprintf.h"
 
 int	ft_intlen(int num)
 {

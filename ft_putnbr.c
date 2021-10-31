@@ -6,11 +6,11 @@
 /*   By: gribovvladimir <gribovvladimir@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:10:40 by lshonta           #+#    #+#             */
-/*   Updated: 2021/10/29 22:05:51 by gribovvladi      ###   ########.fr       */
+/*   Updated: 2021/10/30 06:59:42 by gribovvladi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "./libftprintf.h"
 
 int	ft_putnbr(int nb)
 {

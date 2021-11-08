@@ -3,57 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   add_functions2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gribovvladimir <gribovvladimir@student.    +#+  +:+       +#+        */
+/*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/24 15:27:23 by jzhou             #+#    #+#             */
-/*   Updated: 2021/11/07 06:22:20 by gribovvladi      ###   ########.fr       */
+/*   Created: 2021/11/08 21:37:07 by lshonta           #+#    #+#             */
+/*   Updated: 2021/11/08 21:37:08 by lshonta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <unistd.h>
 
-int	ft_putunsigned(unsigned int nbr)
+int	ft_putuint(unsigned int nbr)
 {
-	int		index;
+	int		len;
 	char	*result;
 
-	index = 0;
+	len = 0;
 	result = ft_itobase(nbr, 10);
 	ft_putstr(result);
-	index = ft_strlen(result);
+	len = ft_strlen(result);
 	free (result);
-	return (index);
+	return (len);
 }
 
-int	ft_putpcnt(void)
+int	ft_puthex(unsigned long nbr)
 {
-	ft_putchar('%');
-	return (1);
-}
-
-int	ft_puthex(unsigned long decimalnbr)
-{
-	int		index;
+	int		len;
 	char	*result;
 
-	index = 0;
-	result = ft_itobase(decimalnbr, 16);
+	len = 0;
+	result = ft_itobase(nbr, 16);
 	ft_putstr(result);
-	index = ft_strlen(result);
+	len = ft_strlen(result);
 	free (result);
-	return (index);
+	return (len);
 }
 
-int	ft_puthex_cap(unsigned long decimalnbr)
+int	ft_puthex_cap(unsigned long nbr)
 {
-	int		index;
+	int		len;
 	char	*result;
 
-	index = 0;
-	result = ft_itobase_cap(decimalnbr, 16);
+	len = 0;
+	result = ft_itobase_cap(nbr, 16);
 	ft_putstr(result);
-	index = ft_strlen(result);
+	len = ft_strlen(result);
 	free (result);
-	return (index);
+	return (len);
 }

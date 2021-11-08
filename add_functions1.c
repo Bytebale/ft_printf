@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_functions1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gribovvladimir <gribovvladimir@student.    +#+  +:+       +#+        */
+/*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/24 15:27:09 by jzhou             #+#    #+#             */
-/*   Updated: 2021/11/06 17:23:39 by gribovvladi      ###   ########.fr       */
+/*   Created: 2021/11/08 21:36:58 by lshonta           #+#    #+#             */
+/*   Updated: 2021/11/08 21:36:58 by lshonta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,50 +19,50 @@ int	ft_putchar(int c)
 	return (1);
 }
 
-int	ft_putstr(char *c)
+int	ft_putstr(char *str)
 {
-	int	index;
+	int	len;
 
-	index = 0;
-	if (c == NULL)
+	len = 0;
+	if (str == NULL)
 	{
 		write(1, "(null)", 6);
-		index = index + 6;
-		return (index);
+		len = len + 6;
+		return (len);
 	}
-	while (c[index] != '\0')
+	while (str[len] != '\0')
 	{
-		write(1, &c[index], 1);
-		index++;
+		write(1, &str[len], 1);
+		len++;
 	}
-	return (index);
+	return (len);
 }
 
 int	ft_putptr(void *ptr)
 {
 	unsigned long	addr;
 	unsigned long	res;
-	int				index;
+	int				len;
 
 	if (ptr == NULL)
 		return (write(1, "0x0", 3));
 	addr = (unsigned long) ptr;
-	index = 0;
+	len = 0;
 	write(1, "0x", 2);
-	index = index + 2;
+	len = len + 2;
 	res = ft_puthex(addr);
-	index = index + res;
-	return (index);
+	len = len + res;
+	return (len);
 }
 
 int	ft_putnbr(int nbr)
 {
-	int	index;
+	int	len;
 
-	index = 0;
+	len = 0;
 	ft_putnbr_fd(nbr, 1);
 	if (nbr < 0)
-		index++;
-	index = index + ft_intlen(nbr);
-	return (index);
+		len++;
+	len = len + ft_intlen(nbr);
+	return (len);
 }

@@ -1,19 +1,20 @@
-
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jzhou <jzhou@student.42.fr>                +#+  +:+       +#+         #
+#    By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/06/22 12:47:57 by jzhou             #+#    #+#              #
-#    Updated: 2021/06/22 12:47:57 by jzhou            ###   ########.fr        #
+#    Created: 2021/11/08 21:32:19 by lshonta           #+#    #+#              #
+#    Updated: 2021/11/08 21:32:21 by lshonta          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 
 NAME = libft.a
+
+HEADER = libft.h
 
 FLAGS = -Wall -Wextra -Werror
 
@@ -29,13 +30,13 @@ BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c
 
 all: $(NAME)
 
-$(NAME):
-	$(CC) $(FLAGS) -c $(SRC)
-	ar rc $(NAME) *.o
+$(NAME): $(HEADER) $(SRC)
+	$(CC) $(FLAGS) -c $(SRC) $<
+	ar rc $(NAME) *.o $?
 
 bonus:
-	$(CC) $(FLAGS) -c $(BONUS)
-	ar rc $(NAME) *.o
+	$(CC) $(FLAGS) -c $(BONUS) $<
+	ar rc $(NAME) *.o $?
 
 clean:
 	rm -f *.o *.out
@@ -44,3 +45,4 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean $(NAME)
+*/*.h

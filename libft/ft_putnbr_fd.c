@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gribovvladimir <gribovvladimir@student.    +#+  +:+       +#+        */
+/*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/23 16:47:32 by jzhou             #+#    #+#             */
-/*   Updated: 2021/11/06 17:33:59 by gribovvladi      ###   ########.fr       */
+/*   Created: 2021/11/08 21:34:37 by lshonta           #+#    #+#             */
+/*   Updated: 2021/11/08 21:34:37 by lshonta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

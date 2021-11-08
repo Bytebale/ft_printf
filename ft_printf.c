@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gribovvladimir <gribovvladimir@student.    +#+  +:+       +#+        */
+/*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/24 16:54:48 by jzhou             #+#    #+#             */
-/*   Updated: 2021/11/06 17:23:44 by gribovvladi      ###   ########.fr       */
+/*   Created: 2021/11/08 21:37:26 by lshonta           #+#    #+#             */
+/*   Updated: 2021/11/08 21:37:28 by lshonta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <unistd.h>
 #include "ft_printf.h"
 
-int	ft_evalu(char c, va_list args)
+int	ft_init(char c, va_list args)
 {
 	int	count;
 
@@ -29,40 +29,40 @@ int	ft_evalu(char c, va_list args)
 	if (c == 'i')
 		count = ft_putnbr(va_arg(args, int));
 	if (c == 'u')
-		count = ft_putunsigned(va_arg(args, unsigned int));
+		count = ft_putuint(va_arg(args, unsigned int));
 	if (c == 'x')
 		count = ft_puthex(va_arg(args, unsigned int));
 	if (c == 'X')
 		count = ft_puthex_cap(va_arg(args, unsigned int));
 	if (c == '%')
-		count = ft_putpcnt();
+		count = ft_putchar('%');
 	return (count);
 }
 
-int	ft_printf(const char *printarg, ...)
+int	ft_printf(const char *format, ...)
 {
-	int		index;
-	int		returnvalue;
+	int		len;
+	int		result;
 	int		count;
 	va_list	args;
 
-	va_start(args, printarg);
-	index = 0;
-	returnvalue = 0;
-	while (printarg[index] != '\0')
+	va_start(args, format);
+	len = 0;
+	result = 0;
+	while (format[len] != '\0')
 	{
-		if (printarg[index] != '%')
+		if (format[len] != '%')
 		{
-			write(1, &printarg[index++], 1);
-			returnvalue++;
+			write(1, &format[len++], 1);
+			result++;
 		}
 		else
 		{
-			index++;
-			count = ft_evalu(printarg[index++], args);
-			returnvalue = returnvalue + count;
+			len++;
+			count = ft_init(format[len++], args);
+			result = result + count;
 		}
 	}
 	va_end(args);
-	return (returnvalue);
+	return (result);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gribovvladimir <gribovvladimir@student.    +#+  +:+       +#+        */
+/*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/20 19:35:05 by jzhou             #+#    #+#             */
-/*   Updated: 2021/11/06 17:23:30 by gribovvladi      ###   ########.fr       */
+/*   Created: 2021/11/08 21:37:36 by lshonta           #+#    #+#             */
+/*   Updated: 2021/11/08 21:37:37 by lshonta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,14 @@
 # include <stdarg.h>
 # include "libft/libft.h"
 
-int	ft_printf(const char *printarg, ...);
+int	ft_printf(const char *format, ...);
 
 int	ft_putchar(int c);
-int	ft_putstr(char *c);
+int	ft_putstr(char *str);
 int	ft_putptr(void *ptr);
 int	ft_putnbr(int nbr);
-int	ft_putunsigned(unsigned int nbr);
-int	ft_putpcnt(void);
-int	ft_puthex(unsigned long decimalnbr);
-int	ft_puthex_cap(unsigned long decimalnbr);
+int	ft_putuint(unsigned int nbr);
+int	ft_puthex(unsigned long nbr);
+int	ft_puthex_cap(unsigned long nbr);
 
 #endif

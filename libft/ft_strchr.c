@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_point.c                                         :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gribovvladimir <gribovvladimir@student.    +#+  +:+       +#+        */
+/*   By: jzhou <jzhou@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/29 20:39:26 by gribovvladi       #+#    #+#             */
-/*   Updated: 2021/10/30 07:00:12 by gribovvladi      ###   ########.fr       */
+/*   Created: 2021/06/16 08:10:01 by jzhou             #+#    #+#             */
+/*   Updated: 2021/06/27 11:39:02 by jzhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libftprintf.h"
+#include "libft.h"
 
-int	ft_point(unsigned	long	int nbr)
+char	*ft_strchr(const char *str, int c)
 {
-	int	len;
+	int		index;
+	char	*s1;
 
-	len = nbr;
-	if (nbr > 15)
+	index = 0;
+	s1 = (char *)str;
+	while (s1[index] != c && s1[index] != '\0')
 	{
-		ft_point(nbr / 16);
-		ft_point(nbr % 16);
+		index++;
 	}
+	if (s1[index] == c)
+		return (&s1[index]);
 	else
-	{
-		if (nbr <= 9)
-			ft_putchar(nbr + '0');
-		else
-			ft_putchar(nbr - 10 + 'a');
-	}
-	return (len);
+		return (0);
 }

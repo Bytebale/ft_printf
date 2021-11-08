@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uint.c                                          :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gribovvladimir <gribovvladimir@student.    +#+  +:+       +#+        */
+/*   By: jzhou <jzhou@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/29 20:38:19 by gribovvladi       #+#    #+#             */
-/*   Updated: 2021/10/30 06:58:50 by gribovvladi      ###   ########.fr       */
+/*   Created: 2021/06/28 14:17:50 by jzhou             #+#    #+#             */
+/*   Updated: 2021/06/28 20:12:45 by jzhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libftprintf.h"
+#include "libft.h"
 
-int	ft_uint(unsigned int nb)
+t_list	*ft_lstnew(void *content)
 {
-	unsigned int	nbr;
+	t_list	*result;
 
-	if (nb < 0)
-		nb = -nb;
-	nbr = (unsigned int) nb;
-	if (nb >= 10)
-	{
-		ft_uint(nbr / 10);
-	}
-	ft_putchar((nbr % 10) + 48);
-	return (0);
+	result = malloc(sizeof(t_list));
+	if (result == 0)
+		return (0);
+	(*result).content = content;
+	(*result).next = NULL;
+	return (result);
 }

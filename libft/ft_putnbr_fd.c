@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hex_low.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gribovvladimir <gribovvladimir@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/29 20:40:15 by gribovvladi       #+#    #+#             */
-/*   Updated: 2021/10/30 07:00:37 by gribovvladi      ###   ########.fr       */
+/*   Created: 2021/06/23 16:47:32 by jzhou             #+#    #+#             */
+/*   Updated: 2021/11/06 17:33:59 by gribovvladi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libftprintf.h"
+#include <unistd.h>
+#include "libft.h"
 
-int	ft_hex_low(unsigned long int nbr)
+void	ft_putnbr_fd(int n, int fd)
 {
-	int	len;
-
-	len = nbr;
-	if (nbr > 15)
+	if (n == -2147483648)
 	{
-		ft_hex_low(nbr / 16);
-		ft_hex_low(nbr % 16);
+		write(fd, "-2147483648", 11);
+	}
+	else if (n < 0)
+	{
+		write(fd, "-", 1);
+		ft_putnbr_fd((n = n * (-1)), fd);
+	}
+	else if (n >= 0 && n <= 9)
+	{
+		n = n + '0';
+		write(fd, &n, 1);
 	}
 	else
 	{
-		if (nbr <= 9)
-		{
-			ft_putchar(nbr + '0');
-		}
-		else
-		{
-			ft_putchar(nbr - 10 + 'a');
-		}
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
 	}
-	return (len);
 }

@@ -1,38 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intlen.c                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gribovvladimir <gribovvladimir@student.    +#+  +:+       +#+        */
+/*   By: jzhou <jzhou@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/29 20:35:39 by gribovvladi       #+#    #+#             */
-/*   Updated: 2021/10/30 07:00:20 by gribovvladi      ###   ########.fr       */
+/*   Created: 2021/06/23 16:44:14 by jzhou             #+#    #+#             */
+/*   Updated: 2021/06/26 10:00:59 by jzhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libftprintf.h"
+#include <unistd.h>
+#include "libft.h"
 
-int	ft_intlen(int num)
+void	ft_putchar_fd(char c, int fd)
 {
-	int	i;
-
-	i = 0;
-	if (num < 0)
-	{
-		i++;
-		num = -num;
-	}
-	if (num != 0)
-	{
-		while (num != 0)
-		{
-			num /= 10;
-			i++;
-		}
-	}
-	else
-		i++;
-	return (i);
+	write(fd, &c, 1);
 }
-
-	// printf("\nlen->%d\n", i);

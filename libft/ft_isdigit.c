@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gribovvladimir <gribovvladimir@student.    +#+  +:+       +#+        */
+/*   By: jzhou <jzhou@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/26 20:09:55 by lshonta           #+#    #+#             */
-/*   Updated: 2021/10/30 06:59:31 by gribovvladi      ###   ########.fr       */
+/*   Created: 2021/06/16 13:53:57 by jzhou             #+#    #+#             */
+/*   Updated: 2021/08/22 09:38:17 by jzhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libftprintf.h"
+#include <unistd.h>
+#include "libft.h"
 
-int	ft_putstr(char *s)
+int	ft_isdigit(int argument)
 {
-	int	i;
-
-	i = 0;
-	if (!(s[i]))
+	if (argument >= 48 && argument <= 57)
+		return (1);
+	else
 		return (0);
-	while (s[i])
-	{
-		ft_putchar(s[i]);
-		i++;
-	}
-	return (i);
 }

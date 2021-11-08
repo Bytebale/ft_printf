@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gribovvladimir <gribovvladimir@student.    +#+  +:+       +#+        */
+/*   By: jzhou <jzhou@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/26 20:08:26 by lshonta           #+#    #+#             */
-/*   Updated: 2021/10/30 06:59:55 by gribovvladi      ###   ########.fr       */
+/*   Created: 2021/06/23 16:46:32 by jzhou             #+#    #+#             */
+/*   Updated: 2021/06/26 10:00:56 by jzhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libftprintf.h"
+#include <unistd.h>
+#include "libft.h"
 
-int	ft_putchar(int c)
+void	ft_putendl_fd(char *s, int fd)
 {
-	write (1, &c, 1);
-	return (0);
+	int	index;
+
+	index = 0;
+	if (s == 0)
+		return ;
+	while (s[index] != '\0')
+	{
+		ft_putchar_fd(s[index], fd);
+		index++;
+	}
+	ft_putchar_fd('\n', fd);
 }

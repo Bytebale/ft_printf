@@ -5,21 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/16 13:57:33 by jzhou             #+#    #+#             */
-/*   Updated: 2021/11/08 21:29:22 by lshonta          ###   ########.fr       */
+/*   Created: 2021/10/04 12:56:02 by lshonta           #+#    #+#             */
+/*   Updated: 2021/10/05 00:43:23 by lshonta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft.h"
-int	ft_isalnum(int argument)
+
+int	ft_isalnum(int c)
 {
-	if (argument >= 65 && argument <= 90)
-		return (1);
-	else if (argument >= 97 && argument <= 122)
-		return (1);
-	else if (argument >= 48 && argument <= 57 )
-		return (1);
-	else
-		return (0);
+	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')
+		|| (c >= '0' && c <= '9'));
 }
+// #include <stdio.h>
+
+// int	main()
+// {
+// 	char	c;
+
+// 	c = 'a';
+// 	printf("%d", ft_isalnum(c));
+// 	return (0);
+// }

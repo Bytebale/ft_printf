@@ -5,26 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 21:34:55 by lshonta           #+#    #+#             */
-/*   Updated: 2021/11/08 21:34:56 by lshonta          ###   ########.fr       */
+/*   Created: 2021/10/05 00:42:46 by lshonta           #+#    #+#             */
+/*   Updated: 2021/10/19 16:28:08 by lshonta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *str, int c, size_t n)
+void	*ft_memset(void *dest, int c, size_t len)
 {
-	unsigned char	*str1;
-	unsigned char	sc;
-	size_t			index;
+	size_t			i;
+	unsigned char	*tmp;
 
-	str1 = (unsigned char *)str;
-	sc = (unsigned char)c;
-	index = 0;
-	while (index < n)
+	i = 0;
+	tmp = (unsigned char *) dest;
+	while (len > 0)
 	{
-		str1[index] = sc;
-		index++;
+		tmp[len - 1] = c;
+		len--;
 	}
-	return (str1);
+	return (dest);
 }
+// #include <stdio.h>
+// #include <string.h>
+
+// int	main()
+// {
+// 	//char	str[] = {"asd"};
+
+// 	printf ("my: %s\n",ft_memset(((void *) 0), 'a', 12));
+// //	printf ("original: %s\n",memset(str, '*', 1));
+// 	return (0);
+// }

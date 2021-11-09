@@ -5,79 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 21:33:14 by lshonta           #+#    #+#             */
-/*   Updated: 2021/11/08 21:33:14 by lshonta          ###   ########.fr       */
+/*   Created: 2021/10/11 18:01:34 by lshonta           #+#    #+#             */
+/*   Updated: 2021/10/16 17:13:25 by lshonta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	is_within_set(char const s, char const *set)
-{
-	size_t	i;
-	size_t	counter;
-
-	i = 0;
-	counter = 0;
-	while (set[i] != '\0')
-	{
-		if (set[i] == s)
-			counter++;
-		i++;
-	}
-	return (counter);
-}
-
-static size_t	s1_rightdel(char const *s1, char const *set)
-{
-	size_t	i;
-
-	i = ft_strlen(s1);
-	while (i > 0)
-	{
-		if (is_within_set(s1[i - 1], set) == 0)
-			return (i);
-		i--;
-	}
-	return (0);
-}
-
-static size_t	s1_leftdel(char const *s1, char const *set)
-{
-	size_t	i;
-
-	i = 0;
-	while (s1[i] != '\0')
-	{
-		if (is_within_set(s1[i], set) == 0)
-			return (i);
-		i++;
-	}
-	return (0);
-}
-
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	leftdel;
-	size_t	rightdel;
-	size_t	length;
-	size_t	index;
-	char	*result;
+	size_t		size;
+	char		*newstring;
 
-	if (s1 == 0 || set == 0)
-		return (0);
-	leftdel = s1_leftdel(s1, set);
-	rightdel = s1_rightdel(s1, set);
-	length = rightdel - leftdel;
-	result = (char *)malloc((length + 1) * sizeof(char));
-	if (result == 0)
-		return (0);
-	index = 0;
-	while (index < length)
-	{
-		result[index] = s1[leftdel + index];
-		index++;
-	}
-	result[index] = '\0';
-	return (result);
+	if (!s1 || !set)
+		return (NULL);
+	while (*s1 && ft_strchr(set, *s1))
+		s1++;
+	size = ft_strlen((char *) s1);
+	while (size && ft_strchr(set, s1[size]))
+		size--;
+	newstring = ft_substr((char *) s1, 0, size + 1);
+	return (newstring);
 }

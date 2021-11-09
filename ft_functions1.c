@@ -6,7 +6,7 @@
 /*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 21:36:58 by lshonta           #+#    #+#             */
-/*   Updated: 2021/11/08 21:36:58 by lshonta          ###   ########.fr       */
+/*   Updated: 2021/11/09 14:33:31 by lshonta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,19 @@ int	ft_putstr(char *str)
 	return (len);
 }
 
-int	ft_putptr(void *ptr)
+int	ft_putpointer(void *ptr)
 {
-	unsigned long	addr;
+	unsigned long	address;
 	unsigned long	res;
 	int				len;
 
 	if (ptr == NULL)
 		return (write(1, "0x0", 3));
-	addr = (unsigned long) ptr;
+	address = (unsigned long) ptr;
 	len = 0;
 	write(1, "0x", 2);
 	len = len + 2;
-	res = ft_puthex(addr);
+	res = ft_puthex(address);
 	len = len + res;
 	return (len);
 }

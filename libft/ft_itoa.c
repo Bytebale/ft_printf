@@ -3,85 +3,76 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gribovvladimir <gribovvladimir@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/22 16:09:16 by jzhou             #+#    #+#             */
-/*   Updated: 2021/11/08 21:29:51 by lshonta          ###   ########.fr       */
+/*   Created: 2021/10/14 01:27:32 by gribovvladi       #+#    #+#             */
+/*   Updated: 2021/10/14 23:58:23 by gribovvladi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	calc(int n)
+static int	ft_estim(long n)
 {
-	int	index;
+	size_t	estim;
+	int		isneg;
 
-	index = 0;
-	if (n == 0)
-		index = 1;
-	else if (n > 0)
-	{
-		while (n > 0)
-		{
-			n = n / 10;
-			index ++;
-		}
-	}
-	else
-	{
-		while (n < 0)
-		{
-			n = n / 10;
-			index ++;
-		}
-		index++;
-	}
-	return (index);
-}
-
-static char	*the_minimum(char *result)
-{
-	if (result == 0)
-		return (0);
-	result = ft_memcpy(result, "-2147483648", 11);
-	result[11] = '\0';
-	return (result);
-}
-
-static char	*compare(int n, char *result)
-{
-	int		len;
-
-	len = calc(n);
-	if (result == 0)
-		return (0);
+	estim = 0;
+	isneg = 0;
 	if (n < 0)
 	{
-		result[0] = '-';
-		n = n * (-1);
+		estim++;
+		isneg++;
+		n = -n;
 	}
-	if (n == 0)
-		result[0] = '0';
-	while (n)
+	while (n >= 1)
 	{
-		result[--len] = ((n % 10) + '0');
-		n = n / 10;
+		estim++;
+		n /= 10;
 	}
-	return (result);
+	return (estim);
+}
+
+static char	*ft_gen(char *rtn, long nbr, int len, int isneg)
+{
+	if (nbr != 0)
+		rtn = malloc(sizeof(char) * (len + 1));
+	else
+		return (rtn = ft_strdup("0"));
+	if (!rtn)
+		return (0);
+	isneg = 0;
+	if (nbr < 0)
+	{
+		isneg++;
+		nbr = -nbr;
+	}
+	rtn[len] = '\0';
+	while (--len)
+	{
+		rtn[len] = (nbr % 10) + '0';
+		nbr /= 10;
+	}
+	if (isneg == 1)
+		rtn[0] = '-';
+	else
+		rtn[0] = (nbr % 10) + '0';
+	return (rtn);
 }
 
 char	*ft_itoa(int n)
 {
 	int		len;
-	char	*result;
+	char	*rtn;
+	long	nbr;
+	int		isneg;
 
-	len = calc(n);
-	result = (char *)malloc((len + 1) * sizeof(char));
-	if (result == 0)
+	nbr = n;
+	len = ft_estim(nbr);
+	rtn = 0;
+	isneg = 0;
+	rtn = ft_gen(rtn, nbr, len, isneg);
+	if (!rtn)
 		return (0);
-	if (n == -2147483648)
-		return (the_minimum(result));
-	result = compare(n, result);
-	result[len] = '\0';
-	return (result);
+	return (rtn);
 }

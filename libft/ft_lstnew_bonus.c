@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 17:48:01 by lshonta           #+#    #+#             */
-/*   Updated: 2021/10/05 17:50:53 by lshonta          ###   ########.fr       */
+/*   Created: 2021/10/19 18:19:05 by lshonta           #+#    #+#             */
+/*   Updated: 2021/10/19 18:30:20 by lshonta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_tolower(int c)
+t_list	*ft_lstnew(void *content)
 {
-	if (c >= 'A' && c <= 'Z')
-		c += 32;
-	return (c);
-}
-// #include <stdio.h>
-// #include <ctype.h>
+	t_list	*rtn;
 
-// int main ()
-// {
-// 	int c = (int) '1';
-// 	printf("my: %c\n", (char) ft_tolower(c));
-// 	printf("orig: %c\n", (char) tolower(c));
-// 	return (0);
-// }
+	rtn = (t_list *)malloc(sizeof(t_list));
+	if (!rtn)
+		return (rtn = NULL);
+	rtn->next = NULL;
+	rtn->content = content;
+	return (rtn);
+}

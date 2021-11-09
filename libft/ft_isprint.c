@@ -5,17 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/16 14:04:56 by jzhou             #+#    #+#             */
-/*   Updated: 2021/11/08 21:29:46 by lshonta          ###   ########.fr       */
+/*   Created: 2021/10/04 13:15:51 by lshonta           #+#    #+#             */
+/*   Updated: 2021/10/05 00:43:46 by lshonta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft.h"
-int	ft_isprint(int arg)
+
+int	ft_isprint(int c)
 {
-	if (arg >= 32 && arg < 127)
-		return (1);
-	else
-		return (0);
+	return (c >= 32 && c <= 126);
 }
+// #include <stdio.h>
+
+// int	main()
+// {
+// 	char	c;
+
+// 	c = ' ';
+// 	printf("%d", ft_isprint(c));
+// 	return (0);
+// }

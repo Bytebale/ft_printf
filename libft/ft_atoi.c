@@ -5,32 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/16 11:10:35 by jzhou             #+#    #+#             */
-/*   Updated: 2021/11/08 21:28:52 by lshonta          ###   ########.fr       */
+/*   Created: 2021/10/06 19:26:28 by lshonta           #+#    #+#             */
+/*   Updated: 2021/10/21 18:34:59 by lshonta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	is_space(char c)
+static char	*ft_ispace(const char *str)
 {
-	if (c == '\t' || c == '\n' || c == '\r')
-		return (1);
-	else if (c == '\f' || c == '\v' || c == ' ')
-		return (1);
-	else
-		return (0);
+	while (((*str == ' ') || (*str == '\t') || (*str == '\n')
+			|| (*str == '\v') || (*str == '\f') || (*str == '\r')))
+		str++;
+	return ((char *)str);
 }
 
 int	ft_atoi(const char *str)
 {
-	long	result;
-	long	sign;
+	int			sign;
+	long int	n;
+	long int	tmp;
 
+	n = 0;
 	sign = 1;
-	result = 0;
-	while (is_space(*str))
-		str++;
+	str = ft_ispace(str);
 	if (*str == '-')
 	{
 		sign = -1;
@@ -40,12 +38,22 @@ int	ft_atoi(const char *str)
 		str++;
 	while (*str >= '0' && *str <= '9')
 	{
-		result = (result * 10) + ((int)*str - '0');
-		if (result > 2147483647 && sign == 1)
+		tmp = n;
+		n = n * 10 + sign * (*str - '0');
+		if (sign == 1 && tmp > n)
 			return (-1);
-		if (result > 2147483648 && sign == -1)
+		else if (sign == -1 && tmp < n)
 			return (0);
 		str++;
 	}
-	return (sign * result);
+	return (n);
 }
+// #include <stdio.h>
+
+// int main()
+// {
+// 	char str[] = "-123";
+// 	printf("my: %d\n", ft_atoi(str));
+// 	printf("orig: %d\n", atoi(str));
+// 	return (0);
+// }

@@ -6,7 +6,7 @@
 /*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 21:37:26 by lshonta           #+#    #+#             */
-/*   Updated: 2021/11/08 21:37:28 by lshonta          ###   ########.fr       */
+/*   Updated: 2021/11/09 14:50:49 by lshonta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@ int	ft_init(char c, va_list args)
 	if (c == 's')
 		count = ft_putstr(va_arg(args, char *));
 	if (c == 'p')
-		count = ft_putptr(va_arg(args, void *));
+		count = ft_putpointer(va_arg(args, void *));
 	if (c == 'd')
 		count = ft_putnbr(va_arg(args, int));
 	if (c == 'i')
 		count = ft_putnbr(va_arg(args, int));
 	if (c == 'u')
-		count = ft_putuint(va_arg(args, unsigned int));
+		count = ft_putunint(va_arg(args, unsigned int));
 	if (c == 'x')
 		count = ft_puthex(va_arg(args, unsigned int));
 	if (c == 'X')
-		count = ft_puthex_cap(va_arg(args, unsigned int));
+		count = ft_puthex_up(va_arg(args, unsigned int));
 	if (c == '%')
 		count = ft_putchar('%');
 	return (count);

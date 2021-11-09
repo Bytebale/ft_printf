@@ -5,32 +5,37 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 21:33:32 by lshonta           #+#    #+#             */
-/*   Updated: 2021/11/08 21:33:32 by lshonta          ###   ########.fr       */
+/*   Created: 2021/10/05 20:44:17 by lshonta           #+#    #+#             */
+/*   Updated: 2021/10/18 16:25:25 by lshonta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *str1, const char *str2, size_t n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t			index;
-	unsigned char	*s1;
-	unsigned char	*s2;
+	size_t	i;
 
-	s1 = (unsigned char *)str1;
-	s2 = (unsigned char *)str2;
-	index = 0;
-	while ((s1[index] != '\0' || s2[index] != '\0') && index < n)
+	i = 0;
+	if (n == 0)
 	{
-		if (s1[index] != s2[index])
-		{
-			if (s1[index] < s2[index])
-				return (s1[index] - s2[index]);
-			else
-				return (s1[index] + s2[index]);
-		}
-		index++;
+		return (0);
 	}
-	return (0);
+	while (s1[i] != '\0' && s1[i] == s2[i] && i < n - 1)
+	{
+		i++;
+	}
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
+// #include <stdio.h>
+// #include <string.h>	
+
+// int main()
+// {
+// 	const char w1[] = "asd";
+// 	const char w2[] = "asefg";
+
+// 	printf("my: %d\n", ft_strncmp(w1, w2, sizeof(w2)));
+// 	printf("orig: %d\n", strncmp(w1, w2, sizeof(w2)));
+// 	return(0);
+// }

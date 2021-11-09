@@ -5,18 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/16 13:53:57 by jzhou             #+#    #+#             */
-/*   Updated: 2021/11/08 21:29:38 by lshonta          ###   ########.fr       */
+/*   Created: 2021/10/04 12:50:48 by lshonta           #+#    #+#             */
+/*   Updated: 2021/10/05 00:43:40 by lshonta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft.h"
 
-int	ft_isdigit(int argument)
+int	ft_isdigit(int c)
 {
-	if (argument >= 48 && argument <= 57)
-		return (1);
-	else
-		return (0);
+	return (c >= '0' && c <= '9');
 }
+// #include <stdio.h>
+
+// int	main()
+// {
+// 	char	c;
+
+// 	c = 'a';
+// 	printf("%d", ft_isdigit(c));
+// 	return (0);
+// }

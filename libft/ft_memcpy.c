@@ -5,28 +5,39 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 21:35:05 by lshonta           #+#    #+#             */
-/*   Updated: 2021/11/08 21:35:06 by lshonta          ###   ########.fr       */
+/*   Created: 2021/10/05 01:12:01 by lshonta           #+#    #+#             */
+/*   Updated: 2021/10/18 16:17:55 by lshonta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_memcpy(void *dest, const void *src, size_t len)
 {
-	unsigned char	*csrc;
-	unsigned char	*cdest;
-	size_t			index;
+	char		*tmp_dest;
+	const char	*tmp_src;
 
-	index = 0;
-	csrc = (unsigned char *)src;
-	cdest = (unsigned char *)dst;
-	if ((dst == 0) && (src == 0))
+	if (!dest && !src)
 		return (0);
-	while (index < n)
-	{
-		cdest[index] = csrc[index];
-		index++;
-	}
-	return (cdest);
+	if (dest == src || len == 0)
+		return (dest);
+	tmp_dest = (char *) dest;
+	tmp_src = (const char *) src;
+	while (len--)
+		*tmp_dest++ = *tmp_src++;
+	return (dest);
 }
+// #include <stdio.h>
+// #include <string.h>
+
+// int	main()
+// {
+// 	char	dest[] = "go hard";
+// 	const char	src[] = "maly ";
+
+// 	printf ("%s\n", dest);
+// 	printf ("%s\n", src);
+// 	printf ("my: %s\n",ft_memcpy(dest, src, sizeof(dest)));
+// 	printf ("original: %s\n", memcpy(dest, src, sizeof(dest)));
+// 	return (0);
+// }

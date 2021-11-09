@@ -5,22 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 21:33:44 by lshonta           #+#    #+#             */
-/*   Updated: 2021/11/08 21:33:50 by lshonta          ###   ########.fr       */
+/*   Created: 2021/10/04 13:31:38 by lshonta           #+#    #+#             */
+/*   Updated: 2021/10/22 18:38:09 by lshonta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(const char *str)
 {
-	int	index;
+	int	i;
 
-	index = 0;
-	while (s[index] != '\0')
-	{
-		index++;
-	}
-	return (index);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
+// #include <stdio.h>
+// #include <string.h>
+
+// int	main()
+// {
+// 	char	str[] = {"aasd"};
+// 	printf("my: %zu\n", ft_strlen(str));
+// 	printf("orig: %zu\n", strlen(str));
+// 	return (0);
+// }

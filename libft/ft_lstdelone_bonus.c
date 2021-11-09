@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 17:48:01 by lshonta           #+#    #+#             */
-/*   Updated: 2021/10/05 17:50:53 by lshonta          ###   ########.fr       */
+/*   Created: 2021/10/19 18:45:11 by lshonta           #+#    #+#             */
+/*   Updated: 2021/10/19 18:45:54 by lshonta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_tolower(int c)
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	if (c >= 'A' && c <= 'Z')
-		c += 32;
-	return (c);
+	if (!lst || !del)
+		return ;
+	(del)(lst->content);
+	free(lst);
 }
-// #include <stdio.h>
-// #include <ctype.h>
-
-// int main ()
-// {
-// 	int c = (int) '1';
-// 	printf("my: %c\n", (char) ft_tolower(c));
-// 	printf("orig: %c\n", (char) tolower(c));
-// 	return (0);
-// }

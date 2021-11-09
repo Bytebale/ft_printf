@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_baselen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 21:35:36 by lshonta           #+#    #+#             */
-/*   Updated: 2021/11/08 21:35:36 by lshonta          ###   ########.fr       */
+/*   Created: 2021/11/08 21:29:03 by lshonta           #+#    #+#             */
+/*   Updated: 2021/11/09 14:37:40 by lshonta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include  "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+int	ft_baselen(unsigned long nbr, int base)
 {
-	unsigned char	*csrc;
-	unsigned char	*cdest;
-	size_t			index;
+	int	counter;
 
-	csrc = (unsigned char *)src;
-	cdest = (unsigned char *)dst;
-	index = 0;
-	while (n)
+	if (nbr == 0)
+		return (1);
+	counter = 0;
+	while (nbr != 0)
 	{
-		cdest[index] = csrc[index];
-		if (csrc[index] == (unsigned char)c)
-			break ;
-		index++;
-		n--;
+		nbr = nbr / base;
+		counter++;
 	}
-	if (n)
-		return (&cdest[index + 1]);
-	return (0);
+	return (counter);
 }

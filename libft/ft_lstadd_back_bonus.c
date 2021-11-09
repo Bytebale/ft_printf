@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 21:36:15 by lshonta           #+#    #+#             */
-/*   Updated: 2021/11/08 21:36:16 by lshonta          ###   ########.fr       */
+/*   Created: 2021/10/19 18:40:28 by lshonta           #+#    #+#             */
+/*   Updated: 2021/10/19 18:41:25 by lshonta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,13 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*temp;
+	t_list	*t;
 
-	temp = *lst;
-	if (new == 0)
-		return ;
-	if (temp == 0)
+	if (*lst)
 	{
-		*lst = new;
-		return ;
+		t = ft_lstlast(*lst);
+		t->next = &*new;
 	}
-	while ((*temp).next != 0)
-		temp = (*temp).next;
-	(*temp).next = new;
+	else
+		*lst = new;
 }

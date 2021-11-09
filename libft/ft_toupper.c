@@ -5,17 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 21:32:43 by lshonta           #+#    #+#             */
-/*   Updated: 2021/11/08 21:32:46 by lshonta          ###   ########.fr       */
+/*   Created: 2021/10/05 04:20:00 by lshonta           #+#    #+#             */
+/*   Updated: 2021/10/05 17:45:48 by lshonta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_toupper(int ch)
+int	ft_toupper(int c)
 {
-	if (ch >= 97 && ch <= 122 )
-		return (ch - 32);
-	else
-		return (ch);
+	if (c >= 'a' && c <= 'z')
+		c -= 32;
+	return (c);
 }
+// #include <stdio.h>
+// #include <ctype.h>
+
+// int main ()
+// {
+// 	int c = (int) 'd';
+// 	printf("my: %c\n", (char) ft_toupper(c));
+// 	printf("orig: %c\n", (char) toupper(c));
+// 	return (0);
+// }

@@ -3,27 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gribovvladimir <gribovvladimir@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 21:33:19 by lshonta           #+#    #+#             */
-/*   Updated: 2021/11/08 21:33:19 by lshonta          ###   ########.fr       */
+/*   Created: 2021/10/05 18:02:44 by lshonta           #+#    #+#             */
+/*   Updated: 2021/10/13 16:51:47 by gribovvladi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *str, int c)
+char	*ft_strrchr(const char *s, int c)
 {
-	int	index;
+	int		i;
+	char	*str;
 
-	index = 0;
-	while (str[index])
-		index++;
-	while (index >= 0)
+	i = 0;
+	str = 0;
+	if (c > 256)
+		c -= 256;
+	while (s[i])
 	{
-		if (str[index] == (char)c)
-			return ((char *)(str + index));
-		index--;
+		if (s[i] == c)
+			str = (char *)(s + i);
+		i++;
 	}
-	return (NULL);
+	if (s[i] == c)
+		str = (char *)(s + i);
+	return (str);
 }
+// #include <stdio.h>
+// #include<string.h>
+// int main()
+// {
+// char str[] = "saymer";
+// char chr = 'y';
+// printf("orig: %s\n",strrchr(str, chr));
+// printf("my: %s\n",ft_strrchr(str, chr));
+// return 0;
+// }

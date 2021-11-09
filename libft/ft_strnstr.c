@@ -5,33 +5,46 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 21:33:24 by lshonta           #+#    #+#             */
-/*   Updated: 2021/11/08 21:33:25 by lshonta          ###   ########.fr       */
+/*   Created: 2021/10/06 18:30:09 by lshonta           #+#    #+#             */
+/*   Updated: 2021/10/07 17:52:06 by lshonta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char	*big, const char *little, size_t len)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	size_t	index;
-	size_t	jindex;
+	size_t	i;
+	size_t	j;
+	size_t	t_len;
+	char	*hay;
 
-	if (little[0] == '\0')
-		return ((char *) big);
-	jindex = 0;
-	while (jindex < len && big[jindex])
+	i = 0;
+	hay = (char *) haystack;
+	t_len = ft_strlen((char *) needle);
+	if (t_len == 0 || haystack == needle)
+		return (hay);
+	while (hay[i] != '\0' && i < len)
 	{
-		index = 0;
-		while (jindex < len && little[index] && big[jindex]
-			&& little[index] == big[jindex])
-		{
-			index++;
-			jindex++;
-		}
-		if (little[index] == '\0')
-			return ((char *)&big[jindex - index]);
-		jindex = jindex - index + 1;
+		j = 0;
+		while (hay [i + j] != '\0' && needle[j] != '\0'
+			&& hay[i + j] == needle[j] && (i + j) < len)
+			j++;
+		if (j == t_len)
+			return (hay + i);
+		i++;
 	}
 	return (0);
 }
+// #include <stdio.h>
+// #include <string.h>	
+
+// int main()
+// {
+// 	const char w1[] = "bas Bad bar";
+// 	const char w2[] = "Bad bar";
+
+// 	printf("my: %s\n", ft_strnstr(w1, w2, sizeof(w1)));
+// 	printf("orig: %s\n", strnstr(w1, w2, sizeof(w1)));
+// 	return(0);
+// }

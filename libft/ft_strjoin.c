@@ -3,41 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gribovvladimir <gribovvladimir@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 21:34:10 by lshonta           #+#    #+#             */
-/*   Updated: 2021/11/08 21:34:12 by lshonta          ###   ########.fr       */
+/*   Created: 2021/10/11 17:03:10 by lshonta           #+#    #+#             */
+/*   Updated: 2021/10/13 16:03:28 by gribovvladi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	index;
-	size_t	jindex;
-	size_t	length;
-	char	*newstr;
+	size_t	s1_len;
+	size_t	s2_len;
+	size_t	stot_len;
+	char	*tmp;
 
-	if (s1 == 0 || s2 == 0)
+	if (!s1 && !s2)
+		return (ft_strdup(""));
+	if (s1 && !s2)
+		return (ft_strdup(s1));
+	if (!s1 && s2)
+		return (ft_strdup(s2));
+	s1_len = ft_strlen((char *) s1);
+	s2_len = ft_strlen((char *) s2);
+	stot_len = s1_len + s2_len + 1;
+	tmp = malloc(sizeof(char) * stot_len);
+	if (!tmp)
 		return (0);
-	index = 0;
-	jindex = 0;
-	length = ft_strlen(s1) + ft_strlen(s2);
-	newstr = (char *)malloc((length + 1) * sizeof(char));
-	if (newstr == 0)
-		return (0);
-	while (s1[index] != '\0')
-	{
-		newstr[index] = s1[index];
-		index++;
-	}
-	while (s2[jindex] != '\0')
-	{
-		newstr[index + jindex] = s2[jindex];
-		jindex++;
-	}
-	newstr[index + jindex] = '\0';
-	return (newstr);
+	ft_memmove(tmp, s1, s1_len);
+	ft_memmove(tmp + s1_len, s2, s2_len);
+	tmp[stot_len - 1] = '\0';
+	return (tmp);
 }

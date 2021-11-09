@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 21:34:04 by lshonta           #+#    #+#             */
-/*   Updated: 2021/11/08 21:34:05 by lshonta          ###   ########.fr       */
+/*   Created: 2021/10/05 03:31:28 by lshonta           #+#    #+#             */
+/*   Updated: 2021/10/05 17:30:41 by lshonta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,42 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t	index;
-	size_t	destlen;
-	size_t	srclen;
+	char		*d;
+	const char	*s;
+	size_t		n;
+	size_t		len;
 
-	index = 0;
-	destlen = ft_strlen(dst);
-	srclen = ft_strlen(src);
-	if (size == 0 || size <= destlen)
-		return (size + srclen);
-	while (src[index] != '\0' && index < (size - destlen - 1))
+	d = dst;
+	s = src;
+	n = size;
+	while (n-- != 0 && *d != '\0')
+		d++;
+	len = d - dst;
+	n = size - len;
+	if (n == 0)
+		return (len + ft_strlen((char *) s));
+	while (*s != '\0')
 	{
-		dst[destlen + index] = src[index];
-		index++;
+		if (n != 1)
+		{
+			*d++ = *s;
+			n--;
+		}
+		s++;
 	}
-	dst[destlen + index] = '\0';
-	return (destlen + srclen);
+	*d = '\0';
+	return (len + (s - src));
 }
+// #include <stdio.h>
+// #include <string.h>
+
+// int	main()
+// {
+// 	char	dest[] = "w";
+// 	const char	src[] = "make";
+
+// 	printf ("%s\n", src);
+// 	printf ("my: %zu\n",ft_strlcat(dest, src, sizeof(dest)));
+// 	printf ("original: %zu\n",strlcat(dest, src, sizeof(dest)));
+// 	return (0);
+// }

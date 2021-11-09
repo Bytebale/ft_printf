@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lshonta <lshonta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 21:35:42 by lshonta           #+#    #+#             */
-/*   Updated: 2021/11/08 21:35:43 by lshonta          ###   ########.fr       */
+/*   Created: 2021/10/19 18:36:36 by lshonta           #+#    #+#             */
+/*   Updated: 2021/10/19 18:37:43 by lshonta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,13 @@
 
 int	ft_lstsize(t_list *lst)
 {
-	int		index;
-	t_list	*temp;
+	int		i;
 
-	index = 1;
-	temp = lst;
-	if (lst == 0)
-		return (0);
-	while (temp->next != 0)
+	i = 0;
+	while (lst)
 	{
-		temp = temp->next;
-		index++;
+		lst = lst->next;
+		i++;
 	}
-	return (index);
+	return (i);
 }
